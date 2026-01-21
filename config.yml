@@ -1,0 +1,85 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (main or master)
+
+# Optional: Lokale Entwicklung
+# local_backend: true
+
+# Medien-Upload Konfiguration
+media_folder: "images/uploads" # Wo hochgeladene Bilder gespeichert werden
+public_folder: "/images/uploads" # Öffentlicher Pfad für Bilder
+
+# Collections - Das sind die bearbeitbaren Inhalte
+collections:
+  # Allgemeine Seiten
+  - name: "pages"
+    label: "Seiten"
+    files:
+      # Startseite
+      - label: "Startseite"
+        name: "home"
+        file: "index.html"
+        fields:
+          - {label: "Hero Überschrift", name: "hero_title", widget: "string", default: "Unsere Philosophie: Kompetenz seit über 35 Jahren"}
+          - {label: "Feature 1 Titel", name: "feature1_title", widget: "string", default: "Beratungskompetenz"}
+          - {label: "Feature 1 Text", name: "feature1_text", widget: "text"}
+          - {label: "Feature 2 Titel", name: "feature2_title", widget: "string", default: "Stärke durch Zusammenarbeit"}
+          - {label: "Feature 2 Text", name: "feature2_text", widget: "text"}
+          - {label: "Feature 3 Titel", name: "feature3_title", widget: "string", default: "Überzeugende Leistungen"}
+          - {label: "Feature 3 Text", name: "feature3_text", widget: "text"}
+          - {label: "CTA Überschrift", name: "cta_title", widget: "string", default: "Möchten Sie auch Teil dieser Gemeinschaft werden?"}
+          - {label: "CTA Text", name: "cta_text", widget: "string", default: "Sprechen Sie uns gerne an."}
+
+      # Kontakt
+      - label: "Kontakt"
+        name: "contact"
+        file: "kontakt.html"
+        fields:
+          - {label: "Ansprechpartner Name", name: "contact_name", widget: "string", default: "Herr Dirk Niermann"}
+          - {label: "Telefon", name: "contact_phone", widget: "string", default: "+49 221 59797-41"}
+          - {label: "Fax", name: "contact_fax", widget: "string", default: "+49 221 59797-88"}
+          - {label: "E-Mail", name: "contact_email", widget: "string", default: "d.niermann@eis-verband.de"}
+
+  # Partner (als Collection für einfaches Hinzufügen/Bearbeiten)
+  - name: "partner"
+    label: "Partner"
+    folder: "content/partner"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Firmenname", name: "title", widget: "string"}
+      - {label: "Straße & Hausnummer", name: "street", widget: "string"}
+      - {label: "PLZ", name: "zip", widget: "string"}
+      - {label: "Stadt", name: "city", widget: "string"}
+      - {label: "Telefon", name: "phone", widget: "string", required: false}
+      - {label: "Fax", name: "fax", widget: "string", required: false}
+      - {label: "E-Mail", name: "email", widget: "string", required: false}
+      - {label: "Website", name: "website", widget: "string", required: false}
+      - {label: "Logo", name: "logo", widget: "image", required: false}
+      - {label: "Zusätzliche Infos", name: "additional_info", widget: "markdown", required: false}
+
+  # Stellenangebote
+  - name: "jobs"
+    label: "Stellenangebote"
+    folder: "content/jobs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Position", name: "title", widget: "string"}
+      - {label: "Beschreibung", name: "description", widget: "markdown"}
+      - {label: "Aufgaben", name: "tasks", widget: "markdown"}
+      - {label: "Anforderungen", name: "requirements", widget: "markdown", required: false}
+      - {label: "Veröffentlicht", name: "published", widget: "boolean", default: true}
+
+  # Aktionen/Kataloge
+  - name: "promotions"
+    label: "Aktionen & Kataloge"
+    folder: "content/promotions"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Titel", name: "title", widget: "string"}
+      - {label: "Beschreibung", name: "description", widget: "markdown"}
+      - {label: "Gültig bis", name: "valid_until", widget: "datetime", required: false}
+      - {label: "Bild", name: "image", widget: "image", required: false}
+      - {label: "Aktiv", name: "active", widget: "boolean", default: true}
